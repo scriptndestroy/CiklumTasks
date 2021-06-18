@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CiklumTasks.Common\CiklumTasks.Common.csproj" />
+    <ProjectReference Include="..\CiklumTasks.Model\CiklumTasks.Model.csproj" />
+  </ItemGroup>
+
+</Project>
