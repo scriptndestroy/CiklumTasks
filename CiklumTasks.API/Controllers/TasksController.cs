@@ -1,11 +1,8 @@
-﻿using Ciklum.ApplicationServices;
-using Ciklum.ApplicationServices.Interfaces;
+﻿using CiklumTasks.ApplicationServices;
+using CiklumTasks.ApplicationServices.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace CiklumTask.API.Controllers
 {

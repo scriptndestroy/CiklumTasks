@@ -1,4 +1,4 @@
-using CicklumTask.Model;
+using CiklumTasks.Model;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
