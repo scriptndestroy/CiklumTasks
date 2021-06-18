@@ -1,11 +1,7 @@
-﻿using Ciklum.Common;
-using System;
+﻿using CiklumTasks.Common;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Ciklum.Repositories.Interfaces
+namespace CiklumTasks.Repositories.Interfaces
 {
     public interface ITasksRepository
     {

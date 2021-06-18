@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Ciklum.Common
+﻿namespace CiklumTasks.Common
 {
     public class TaskDTO
     {

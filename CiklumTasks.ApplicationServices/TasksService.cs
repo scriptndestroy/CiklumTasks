@@ -1,12 +1,10 @@
-﻿using Ciklum.ApplicationServices.Interfaces;
-using Ciklum.Common;
-using Ciklum.Repositories.Interfaces;
+﻿using CiklumTasks.ApplicationServices.Interfaces;
+using CiklumTasks.Common;
+using CiklumTasks.Repositories.Interfaces;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
-namespace Ciklum.ApplicationServices
+namespace CiklumTasks.ApplicationServices
 {
     public class TasksService: ITaskService
     {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace CicklumTask.Model
+namespace CiklumTasks.Model
 {
     public class Context : DbContext
     {

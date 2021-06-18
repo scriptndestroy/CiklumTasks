@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CiklumTaskAPI.Controllers
+namespace CiklumTask.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]

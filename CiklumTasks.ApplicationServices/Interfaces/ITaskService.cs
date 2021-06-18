@@ -1,8 +1,7 @@
-﻿using Ciklum.Common;
+﻿using CiklumTasks.Common;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
-namespace Ciklum.ApplicationServices.Interfaces
+namespace CiklumTasks.ApplicationServices.Interfaces
 {
     public interface ITaskService
     {

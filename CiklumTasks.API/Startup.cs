@@ -31,9 +31,9 @@ namespace CiklumTasks.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Title = "WebBeds API",
+                    Title = "CiklumTask API",
                     Version = "v1",
-                    Description = "Example WebBeds Web API use",
+                    Description = "Example CiklumTask Web API use",
                     Contact = new OpenApiContact
                     {
                         Name = "Alejandro Ojeda Maruny",
