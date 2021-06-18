@@ -1,7 +1,7 @@
 ﻿using CiklumTasks.Common;
 using System.Collections.Generic;
 
-namespace CiklumTasks.Repositories.Interfaces
+namespace CiklumTasks.Repositories
 {
     public interface ITasksRepository
     {

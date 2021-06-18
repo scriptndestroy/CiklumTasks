@@ -1,20 +1,19 @@
 ﻿using CiklumTasks.ApplicationServices;
-using CiklumTasks.ApplicationServices.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 
-namespace CiklumTask.API.Controllers
+namespace CiklumTasks.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
     public class TasksController : ControllerBase
     {
-        private readonly ITaskService _tasks;
+        private readonly ITasksService _tasks;
 
         private readonly ILogger<TasksController> _logger;
 
-        public TasksController(ILogger<TasksController> logger, TasksService tasks)
+        public TasksController(ITasksService tasks, ILogger<TasksController> logger)
         {
             _tasks = tasks;
             _logger = logger;
@@ -22,7 +21,7 @@ namespace CiklumTask.API.Controllers
 
         [HttpGet]
         [ResponseCache(VaryByHeader = "User-Agent", Duration = 30)]
-        //[Route("search")]
+        [Route("Get")]
         public IActionResult Get()
         {
             try

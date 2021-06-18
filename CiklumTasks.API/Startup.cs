@@ -1,4 +1,6 @@
+using CiklumTasks.ApplicationServices;
 using CiklumTasks.Model;
+using CiklumTasks.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -22,8 +24,13 @@ namespace CiklumTasks.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<ITasksRepository, TasksRepository>();
+            RegisterApplicationServices(services);
+            RegisterTransientServices(services);
+
+            services.AddControllers();            
             services.AddDbContext<Context>(options => options.UseSqlServer(Configuration.GetConnectionString("ciklumTaskDB")));
-            services.AddControllers();
+                     
 
             ConfigureCors(services);
 
@@ -64,9 +71,21 @@ namespace CiklumTasks.API
             {
                 endpoints.MapControllers();
             });
+            
         }
 
-        private void ConfigureCors(IServiceCollection services)
+        #region Private methods
+        private static void RegisterApplicationServices(IServiceCollection services)
+        {
+            services.AddTransient<ITasksService, TasksService>();            
+        }
+
+        private static void RegisterTransientServices(IServiceCollection services)
+        {
+            services.AddTransient<ITasksRepository, TasksRepository>();
+        }
+
+            private void ConfigureCors(IServiceCollection services)
         {
             var frontendServerUrl = Configuration.GetValue<string>("FrontendServerUrl");
             services.AddCors(options =>
@@ -77,5 +96,6 @@ namespace CiklumTasks.API
                 )
             );
         }
+        #endregion
     }
 }

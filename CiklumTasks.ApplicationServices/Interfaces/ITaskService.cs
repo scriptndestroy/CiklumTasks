@@ -1,9 +1,9 @@
 ﻿using CiklumTasks.Common;
 using System.Collections.Generic;
 
-namespace CiklumTasks.ApplicationServices.Interfaces
+namespace CiklumTasks.ApplicationServices
 {
-    public interface ITaskService
+    public interface ITasksService
     {
         public IEnumerable<TaskDTO> GetAll();
     }
