@@ -9,6 +9,12 @@ namespace CiklumTasks.Model
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+        [MaxLength(100)]
+        public string Title { get; set; }
+        [MaxLength(300)]
+        public string Description { get; set; }
+
+        public string Status{ get; set; }
 
 
     }
