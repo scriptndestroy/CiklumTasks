@@ -40,6 +40,24 @@ namespace CiklumTasks.Model.Migrations
 
                     b.ToTable("Task", "dbo");
                 });
+
+            modelBuilder.Entity("CiklumTasks.Model.TaskStatus", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TaskStatus");
+                });
 #pragma warning restore 612, 618
         }
     }

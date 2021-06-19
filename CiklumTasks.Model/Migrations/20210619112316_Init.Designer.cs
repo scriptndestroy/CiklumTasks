@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CiklumTasks.Model.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20210619104531_add_task_props")]
-    partial class add_task_props
+    [Migration("20210619112316_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -41,6 +41,24 @@ namespace CiklumTasks.Model.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Task", "dbo");
+                });
+
+            modelBuilder.Entity("CiklumTasks.Model.TaskStatus", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TaskStatus");
                 });
 #pragma warning restore 612, 618
         }

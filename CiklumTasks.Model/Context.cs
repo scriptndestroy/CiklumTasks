@@ -13,5 +13,7 @@ namespace CiklumTasks.Model
         {
         }
         public DbSet<Task> Tasks { get; set; }
+
+        public DbSet<TaskStatus> TaskStatus { get; set; }
     }
 }
