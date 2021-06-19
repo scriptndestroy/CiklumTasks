@@ -2,6 +2,7 @@
 using CiklumTasks.Repositories;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CiklumTasks.ApplicationServices
 {
@@ -22,6 +23,11 @@ namespace CiklumTasks.ApplicationServices
         public IEnumerable<TaskDTO> GetAll()
         {
             return _tasksRepository.GetAll();
+        }
+
+        public async Task<IEnumerable<TaskDTO>> AddAsync(TaskDTO taskDto)
+        {
+            return await _tasksRepository.AddAsync(taskDto);
         }
         #endregion
     }

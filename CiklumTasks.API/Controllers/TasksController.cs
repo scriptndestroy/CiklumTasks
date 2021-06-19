@@ -1,8 +1,10 @@
 ﻿using CiklumTasks.ApplicationServices;
+using CiklumTasks.Common;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Threading.Tasks;
 
 namespace CiklumTasks.API.Controllers
 {
@@ -22,8 +24,7 @@ namespace CiklumTasks.API.Controllers
         }
 
         [HttpGet]
-        [ResponseCache(VaryByHeader = "User-Agent", Duration = 30)]
-        [Route("Get")]
+        [ResponseCache(VaryByHeader = "User-Agent", Duration = 30)]        
         public IActionResult Get()
         {
             try
@@ -34,6 +35,27 @@ namespace CiklumTasks.API.Controllers
                 }
 
                 var result = _tasks.GetAll();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(this.ControllerContext.RouteData.Values["action"].ToString(), ex);
+                return BadRequest(this.ControllerContext.RouteData.Values["action"].ToString());
+                throw;
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<TaskDTO>> PostTask(TaskDTO taskDto)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+
+                var result = await _tasks.AddAsync(taskDto);
                 return Ok(result);
             }
             catch (Exception ex)

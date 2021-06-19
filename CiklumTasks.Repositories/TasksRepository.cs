@@ -35,6 +35,33 @@ namespace CiklumTasks.Repositories
                 throw;
             }
         }
+
+        public async System.Threading.Tasks.Task<IEnumerable<TaskDTO>> AddAsync(TaskDTO taskDto)
+        {
+            try
+            {
+                _context.Tasks.Add(new Task {
+                     Description = taskDto.Description,
+                     Status = taskDto.Status,
+                     Title = taskDto.Title
+                });
+                await _context.SaveChangesAsync();
+                IEnumerable<TaskDTO> tasks = from t in _context.Tasks
+                                             select new TaskDTO()
+                                             {
+                                                 Id = t.Id,
+                                                 Title = t.Title,
+                                                 Status = t.Status,
+                                                 Description = t.Description
+                                             };
+                return tasks;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
         #endregion
     }
 }

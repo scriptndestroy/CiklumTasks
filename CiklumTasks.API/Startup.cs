@@ -29,7 +29,10 @@ namespace CiklumTasks.API
 
             services.AddControllers();            
             services.AddDbContext<Context>(options => options.UseSqlServer(Configuration.GetConnectionString("ciklumTaskDB")));
-                     
+
+            //In memory, Install EntityFrameworkCore.InMemory
+            //services.AddDbContext<Context>(opt =>  opt.UseInMemoryDatabase("ciklumTaskDB"));
+
 
             ConfigureCors(services);
 
@@ -65,6 +68,8 @@ namespace CiklumTasks.API
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseCors();
 
             app.UseEndpoints(endpoints =>
             {
