@@ -97,9 +97,10 @@ namespace CiklumTasks.API
         {
 
             var frontendServerUrl = Configuration.GetValue<string>("FrontendServerUrl");
+            var gitServerUrl = Configuration.GetValue<string>("GitServerUrl");
             services.AddCors(options =>
                 options.AddPolicy(CiklumPolicy, builder =>
-                    builder.WithOrigins(frontendServerUrl)                        
+                    builder.WithOrigins(frontendServerUrl, gitServerUrl)                        
                         .AllowAnyHeader()
                         .AllowAnyMethod()
                 )
