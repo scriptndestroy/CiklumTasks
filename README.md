@@ -8,6 +8,6 @@
  
  3 - Select Default project CiklumTasks.Model
  
- 4 - Execute command Update-Database
+ 4 - Execute command Update-Database to set up LocalDB
  
  5 - Run.
