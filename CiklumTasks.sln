@@ -3,17 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31402.337
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CiklumTasks.API", "CiklumTasks.API\CiklumTasks.API.csproj", "{616F9604-2D0A-4558-9A0A-1FA75BC156B3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CiklumTasks.API", "CiklumTasks.API\CiklumTasks.API.csproj", "{616F9604-2D0A-4558-9A0A-1FA75BC156B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CiklumTasks.Model", "CiklumTasks.Model\CiklumTasks.Model.csproj", "{734DED87-05D4-46C8-B7AA-5F66F68CDB4A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CiklumTasks.Model", "CiklumTasks.Model\CiklumTasks.Model.csproj", "{734DED87-05D4-46C8-B7AA-5F66F68CDB4A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CiklumTasks.ApplicationServices", "CiklumTasks.ApplicationServices\CiklumTasks.ApplicationServices.csproj", "{7A8170A3-A149-4854-94EA-9AAF3E5A59F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CiklumTasks.ApplicationServices", "CiklumTasks.ApplicationServices\CiklumTasks.ApplicationServices.csproj", "{7A8170A3-A149-4854-94EA-9AAF3E5A59F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CiklumTasks.Common", "CiklumTasks.Common\CiklumTasks.Common.csproj", "{4012A3B0-C3CA-49E7-AA05-25B35CA2F307}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CiklumTasks.Common", "CiklumTasks.Common\CiklumTasks.Common.csproj", "{4012A3B0-C3CA-49E7-AA05-25B35CA2F307}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CiklumTasks.Repositories", "CiklumTasks.Repositories\CiklumTasks.Repositories.csproj", "{504CB45D-A43D-489E-B8B6-160B11BB318E}"
-EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{1269C2B7-B449-4224-A426-20651C6B4ADE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CiklumTasks.Repositories", "CiklumTasks.Repositories\CiklumTasks.Repositories.csproj", "{504CB45D-A43D-489E-B8B6-160B11BB318E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +39,6 @@ Global
 		{504CB45D-A43D-489E-B8B6-160B11BB318E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{504CB45D-A43D-489E-B8B6-160B11BB318E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{504CB45D-A43D-489E-B8B6-160B11BB318E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1269C2B7-B449-4224-A426-20651C6B4ADE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1269C2B7-B449-4224-A426-20651C6B4ADE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1269C2B7-B449-4224-A426-20651C6B4ADE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1269C2B7-B449-4224-A426-20651C6B4ADE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

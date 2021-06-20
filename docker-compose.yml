@@ -1,8 +1,0 @@
-version: '3.4'
-
-services:
-  ciklumtasks.api:
-    image: ${DOCKER_REGISTRY-}ciklumtasksapi
-    build:
-      context: .
-      dockerfile: CiklumTasks.API/Dockerfile
