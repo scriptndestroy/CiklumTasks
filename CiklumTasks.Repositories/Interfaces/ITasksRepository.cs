@@ -8,6 +8,10 @@ namespace CiklumTasks.Repositories
     {
         public IEnumerable<TaskDTO> GetAll();
 
+        public IEnumerable<TaskStatusDTO> GetTaskStatus();
+
         public Task<IEnumerable<TaskDTO>> AddAsync(TaskDTO taskDto);
+
+        public Task<IEnumerable<TaskDTO>> UpdateAsync(TaskDTO taskDto);
     }
 }

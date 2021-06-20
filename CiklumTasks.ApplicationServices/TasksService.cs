@@ -25,9 +25,19 @@ namespace CiklumTasks.ApplicationServices
             return _tasksRepository.GetAll();
         }
 
+        public IEnumerable<TaskStatusDTO> GetTaskStatus()
+        {
+            return _tasksRepository.GetTaskStatus();
+        }
+
         public async Task<IEnumerable<TaskDTO>> AddAsync(TaskDTO taskDto)
         {
             return await _tasksRepository.AddAsync(taskDto);
+        }
+
+        public async Task<IEnumerable<TaskDTO>> UpdateAsync(TaskDTO taskDto)
+        {
+            return await _tasksRepository.UpdateAsync(taskDto);
         }
         #endregion
     }

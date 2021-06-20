@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Net.Http.Headers;
 using Microsoft.OpenApi.Models;
 using System;
 
@@ -14,6 +15,7 @@ namespace CiklumTasks.API
 {
     public class Startup
     {
+        readonly string CiklumPolicy = "CiklumPolicy";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -23,18 +25,18 @@ namespace CiklumTasks.API
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {            
+        {           
             RegisterApplicationServices(services);
             RegisterTransientServices(services);
 
-            services.AddControllers();            
+            ConfigureCors(services);
+
+            services.AddControllers();
+
             services.AddDbContext<Context>(options => options.UseSqlServer(Configuration.GetConnectionString("ciklumTaskDB")));
 
             //In memory, Install EntityFrameworkCore.InMemory
             //services.AddDbContext<Context>(opt =>  opt.UseInMemoryDatabase("ciklumTaskDB"));
-
-
-            ConfigureCors(services);
 
             services.AddSwaggerGen(c =>
             {
@@ -51,23 +53,23 @@ namespace CiklumTasks.API
                     },
                 });
             });
+            services.AddResponseCaching();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
+        {           
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "CiklumTaskAPI v1"));
-            }
+            }            
 
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
-            app.UseAuthorization();
 
             app.UseCors();
 
@@ -75,13 +77,13 @@ namespace CiklumTasks.API
             {
                 endpoints.MapControllers();
             });
-            
+
         }
 
         #region Private methods
         private static void RegisterApplicationServices(IServiceCollection services)
         {
-            services.AddTransient<ITasksService, TasksService>();            
+            services.AddTransient<ITasksService, TasksService>();
         }
 
         private static void RegisterTransientServices(IServiceCollection services)
@@ -89,12 +91,13 @@ namespace CiklumTasks.API
             services.AddTransient<ITasksRepository, TasksRepository>();
         }
 
-            private void ConfigureCors(IServiceCollection services)
+        private void ConfigureCors(IServiceCollection services)
         {
+
             var frontendServerUrl = Configuration.GetValue<string>("FrontendServerUrl");
             services.AddCors(options =>
-                options.AddPolicy("AllowOrigin", builder =>
-                    builder.WithOrigins(frontendServerUrl)
+                options.AddPolicy(CiklumPolicy, builder =>
+                    builder.WithOrigins(frontendServerUrl)                        
                         .AllowAnyHeader()
                         .AllowAnyMethod()
                 )

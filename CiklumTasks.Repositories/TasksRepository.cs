@@ -25,8 +25,31 @@ namespace CiklumTasks.Repositories
                 IEnumerable<TaskDTO> tasks = from t in _context.Tasks
                                              select new TaskDTO()
                                              {
-                                                 Id = t.Id
+                                                 Id = t.Id,
+                                                 Description = t.Description,
+                                                 Status = t.Status,
+                                                 Title = t.Title
                                              };
+                return tasks;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public IEnumerable<TaskStatusDTO> GetTaskStatus()
+        {
+            try
+            {
+                IEnumerable<TaskStatusDTO> tasks = from t in _context.TaskStatus
+                                                   select new TaskStatusDTO()
+                                                   {
+                                                       Id = t.Id,
+                                                       Label = t.Description,
+                                                       Value = t.Value,
+                                                   };
                 return tasks;
             }
             catch (Exception)
@@ -40,12 +63,44 @@ namespace CiklumTasks.Repositories
         {
             try
             {
-                _context.Tasks.Add(new Task {
-                     Description = taskDto.Description,
-                     Status = taskDto.Status,
-                     Title = taskDto.Title
+                _context.Tasks.Add(new Task
+                {
+                    Description = taskDto.Description,
+                    Status = taskDto.Status,
+                    Title = taskDto.Title
                 });
                 await _context.SaveChangesAsync();
+
+                IEnumerable<TaskDTO> tasks = from t in _context.Tasks
+                                             select new TaskDTO()
+                                             {
+                                                 Id = t.Id,
+                                                 Title = t.Title,
+                                                 Status = t.Status,
+                                                 Description = t.Description
+                                             };
+                return tasks;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public async System.Threading.Tasks.Task<IEnumerable<TaskDTO>> UpdateAsync(TaskDTO taskDto)
+        {
+            try
+            {
+                _context.Entry(new Task
+                {
+                    Id = taskDto.Id,
+                    Description = taskDto.Description,
+                    Status = taskDto.Status,
+                    Title = taskDto.Title
+                }).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                await _context.SaveChangesAsync();
+
                 IEnumerable<TaskDTO> tasks = from t in _context.Tasks
                                              select new TaskDTO()
                                              {

@@ -7,10 +7,10 @@ using System;
 using System.Threading.Tasks;
 
 namespace CiklumTasks.API.Controllers
-{
-    [ApiController]
-    [EnableCors("AllowOrigin")]
+{    
     [Route("[controller]")]
+    [EnableCors("CiklumPolicy")]
+    [ApiController]
     public class TasksController : ControllerBase
     {
         private readonly ITasksService _tasks;
@@ -56,6 +56,50 @@ namespace CiklumTasks.API.Controllers
                 }
 
                 var result = await _tasks.AddAsync(taskDto);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(this.ControllerContext.RouteData.Values["action"].ToString(), ex);
+                return BadRequest(this.ControllerContext.RouteData.Values["action"].ToString());
+                throw;
+            }
+        }
+
+        [HttpPut]
+        public async Task<ActionResult<TaskDTO>> PutTask(TaskDTO taskDto)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+
+                var result = await _tasks.UpdateAsync(taskDto);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(this.ControllerContext.RouteData.Values["action"].ToString(), ex);
+                return BadRequest(this.ControllerContext.RouteData.Values["action"].ToString());
+                throw;
+            }
+        }
+
+        [HttpGet]
+        [ResponseCache(VaryByHeader = "User-Agent", Duration = 30)]
+        [Route("taskStatus")]
+        public IActionResult GetTaskStatus()
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+
+                var result = _tasks.GetTaskStatus();
                 return Ok(result);
             }
             catch (Exception ex)

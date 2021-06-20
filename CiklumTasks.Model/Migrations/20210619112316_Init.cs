@@ -22,7 +22,7 @@ namespace CiklumTasks.Model.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Task", x => x.Id);
+                    table.PrimaryKey("PK_Task", x => x.Id);                    
                 });
 
             migrationBuilder.CreateTable(
