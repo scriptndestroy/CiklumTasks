@@ -7,7 +7,6 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
-COPY CiklumTasks.sln ./
 COPY ["CiklumTasks.API/CiklumTasks.API.csproj", "CiklumTasks.API/"]
 COPY ["CiklumTasks.ApplicationServices/CiklumTasks.ApplicationServices.csproj", "CiklumTasks.ApplicationServices/"]
 COPY ["CiklumTasks.Repositories/CiklumTasks.Repositories.csproj", "CiklumTasks.Repositories/"]
@@ -24,4 +23,5 @@ RUN dotnet publish "CiklumTasks.API.csproj" -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "CiklumTasks.API.dll"]
+# heroku uses the following
+CMD ASPNETCORE_URLS=http://*:$PORT dotnet CiklumTasks.API.dll
