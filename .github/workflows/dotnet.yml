@@ -13,13 +13,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 5.0.x
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+    - name: Build and deploy docker image
+    - env: 
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        APP_NAME: ${{ 'CiklumTasksAPI' }}
+      run: |
+        cd ./ASPNetCoreLabs/HerokuContainer
+        docker login --username=_ --password=$HEROKU_API_KEY registry.heroku.com
+        heroku container:push web -a $APP_NAME
+        heroku container:release web -a $APP_NAME
