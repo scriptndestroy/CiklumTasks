@@ -13,17 +13,15 @@ COPY ["CiklumTasks.ApplicationServices/CiklumTasks.ApplicationServices.csproj", 
 COPY ["CiklumTasks.Repositories/CiklumTasks.Repositories.csproj", "CiklumTasks.Repositories/"]
 COPY ["CiklumTasks.Model/CiklumTasks.Model.csproj", "CiklumTasks.Model/"]
 COPY ["CiklumTasks.Common/CiklumTasks.Common.csproj", "CiklumTasks.Common/"]
-RUN dotnet restore "CiklumTasks/CiklumTasks.csproj"
+RUN dotnet restore "CiklumTasks.API/CiklumTasks.API.csproj"
 COPY . .
-WORKDIR "/src/CiklumTasks"
-RUN dotnet build "CiklumTasks.csproj" -c Release -o /app/build
+WORKDIR "/src/CiklumTasks.API"
+RUN dotnet build "CiklumTasks.API.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "CiklumTasks.csproj" -c Release -o /app/publish
+RUN dotnet publish "CiklumTasks.API.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-# ENTRYPOINT ["dotnet", "CiklumTask.dll"]
-# heroku uses the following
-CMD ASPNETCORE_URLS=http://*:$PORT dotnet CiklumTask.dll
+ENTRYPOINT ["dotnet", "CiklumTasks.API.dll"]
