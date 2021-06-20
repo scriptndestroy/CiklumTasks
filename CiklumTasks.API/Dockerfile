@@ -23,6 +23,6 @@ RUN dotnet publish "CiklumTasks.API.csproj" -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-#ENTRYPOINT ["dotnet", "CiklumTasks.API.dll"]
+# ENTRYPOINT ["dotnet", "CiklumTask.API.dll"]
 # heroku uses the following
-CMD ASPNETCORE_URLS=http://*:$PORT dotnet CiklumTasks.API.dll
+CMD ASPNETCORE_URLS=http://*:$PORT dotnet CiklumTask.API.dll
