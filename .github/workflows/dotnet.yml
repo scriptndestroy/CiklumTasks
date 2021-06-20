@@ -22,4 +22,4 @@ jobs:
           SECRET_KEY
       env:
           NODE_ENV: production
-          SECRET_KEY: ${{ '9eFiD=(wGb:"g<#' }}
+          SECRET_KEY: ${{ secrets.HEROKU_KEY }}
